@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+/* Design tokens */
+:root {
+  /* Palette */
+  --ims-primary: #2563eb; /* blue */
+  --ims-secondary: #7c3aed; /* purple */
+  --ims-success: #059669; /* green */
+  --ims-warning: #d97706; /* amber */
+  --ims-error: #dc2626;   /* red */
+  --ims-bg: #fafafa;      /* light gray */
+  --ims-card: #ffffff;
+  --ims-text: #1f2937;    /* dark gray */
+
+  /* Radii */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  /* Effects */
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.1);
+  --glass-bg: 255 255 255 / 0.6;
+  --glass-border: 255 255 255 / 0.4;
+}
+
+@theme inline {
+  --color-background: var(--ims-bg);
+  --color-foreground: var(--ims-text);
+  --color-primary: var(--ims-primary);
+  --color-secondary: var(--ims-secondary);
+  --color-success: var(--ims-success);
+  --color-warning: var(--ims-warning);
+  --color-error: var(--ims-error);
+  --color-card: var(--ims-card);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ims-bg: #0b0f1a;
+    --ims-card: #0f172a;
+    --ims-text: #e5e7eb;
+    --glass-bg: 15 23 42 / 0.45;
+    --glass-border: 148 163 184 / 0.15;
+  }
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: var(--ims-bg);
+  color: var(--ims-text);
+}
+
+/* Premium baseline - smoothness & focus */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--ims-primary) 25%, transparent);
+}
+
+/* Utility for glass-morphism cards */
+.glass-card {
+  background-color: rgb(var(--glass-bg));
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  backdrop-filter: saturate(180%) blur(12px);
+  border: 1px solid rgb(var(--glass-border));
+  box-shadow: var(--shadow-card);
+}
+
+/* Smooth animations defaults */
+.animate-soft-enter {
+  animation: soft-enter 320ms ease-out both;
+}
+
+@keyframes soft-enter {
+  from { opacity: 0; transform: translateY(6px) scale(0.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
